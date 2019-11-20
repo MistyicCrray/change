@@ -10,7 +10,6 @@ import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.barter.model.User;
 import com.barter.service.UserService;
 import com.barter.tools.AuthorizationException;
 import com.barter.tools.LoginRequired;
@@ -68,19 +67,6 @@ public class AuthenticationInterceptor implements HandlerInterceptor {
 				if (user == null) {
 //					response.setStatus(401);
 					throw new AuthorizationException("token无效，用户不存在，请重新登录");
-				}
-				User cuser = (User) user;
-				String value = methodAnnotation.value();
-				String[] split = value.split(",");
-				int i = 0;
-				for (String string : split) {
-					if (cuser.getUserType() == Integer.parseInt(string)) {
-						i++;
-						break;
-					}
-				}
-				if (i == 0) {
-					response.setStatus(202);
 				}
 				// 当前登录用户@CurrentUser
 				request.setAttribute(CurrentUserConstants.CURRENT_USER, user);

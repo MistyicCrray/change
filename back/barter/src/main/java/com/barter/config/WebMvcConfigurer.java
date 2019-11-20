@@ -27,6 +27,7 @@ import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
+import org.springframework.web.socket.server.standard.ServerEndpointExporter;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.serializer.SerializerFeature;
@@ -74,6 +75,11 @@ public class WebMvcConfigurer extends WebMvcConfigurerAdapter {
 		return new CurrentUserMethodArgumentResolver();
 	}
 
+	@Bean
+    public ServerEndpointExporter serverEndpointExporter() {
+        return new ServerEndpointExporter();
+    }
+ 
 	@Override
 	public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
 		FastJsonHttpMessageConverter converter = new FastJsonHttpMessageConverter();
@@ -129,7 +135,7 @@ public class WebMvcConfigurer extends WebMvcConfigurerAdapter {
 
 	@Override
 	public void addCorsMappings(CorsRegistry registry) {
-//		registry.addMapping("/**");
+		 registry.addMapping("/**");
 	}
 
 	private void responseResult(HttpServletResponse response, Result result) {
@@ -175,8 +181,8 @@ public class WebMvcConfigurer extends WebMvcConfigurerAdapter {
 	}
 
 	/**
-	 * 一个简单的签名认证，规则： 1. 将请求参数按ascii码排序 2. 拼接为a=value&b=value...这样的字符串（不包含sign） 3.
-	 * 混合密钥（secret）进行md5获得签名，与请求的签名进行比较
+	 * 一个简单的签名认证，规则： 1. 将请求参数按ascii码排序 2. 拼接为a=value&b=value...这样的字符串（不包含sign）
+	 * 3. 混合密钥（secret）进行md5获得签名，与请求的签名进行比较
 	 */
 	private boolean validateSign(HttpServletRequest request) {
 		String requestSign = request.getParameter("sign");// 获得请求签名，如sign=19e907700db7ad91318424a97c54ed57
@@ -224,5 +230,5 @@ public class WebMvcConfigurer extends WebMvcConfigurerAdapter {
 
 		return ip;
 	}
-	
+
 }

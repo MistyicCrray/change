@@ -72,15 +72,11 @@ public class FileUtil {
 
 	public static void delFile(String filePathAndName) {
 		try {
-
-			String filePath = uploadFilePath + "/" + filePathAndName;
-			filePath = filePath.toString();
+			String filePath = uploadFilePath + filePathAndName;
 			java.io.File myDelFile = new java.io.File(filePath);
 			myDelFile.delete();
-
 		} catch (Exception e) {
 			e.printStackTrace();
-
 		}
 
 	}
