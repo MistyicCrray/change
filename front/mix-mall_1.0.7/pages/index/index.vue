@@ -1,31 +1,23 @@
 <template>
 	<view class="container">
-		<!-- 小程序头部兼容 -->
-		<!-- #ifdef MP -->
 		<view class="mp-search-box">
 			<input class="ser-input" type="text" value="输入关键字搜索" />
 		</view>
-		<!-- #endif -->
 
-		<!-- 头部轮播 -->
 		<view class="carousel-section">
-			<!-- 标题栏和状态栏占位符 -->
 			<view class="titleNview-placing"></view>
-			<!-- 背景色区域 -->
 			<view class="titleNview-background" :style="{backgroundColor:titleNViewBackground}"></view>
 			<swiper class="carousel" circular @change="swiperChange">
 				<swiper-item v-for="(item, index) in carouselList" :key="index" class="carousel-item" @click="navToDetailPage({title: '轮播广告'})">
 					<image :src="item.src" />
 				</swiper-item>
 			</swiper>
-			<!-- 自定义swiper指示器 -->
 			<view class="swiper-dots">
 				<text class="num">{{swiperCurrent+1}}</text>
 				<text class="sign">/</text>
 				<text class="num">{{swiperLength}}</text>
 			</view>
 		</view>
-		<!-- 分类 -->
 		<view class="cate-section">
 			<view class="cate-item">
 				<image src="/static/temp/c3.png"></image>
@@ -53,7 +45,6 @@
 			<image src="/static/temp/ad1.jpg" mode="scaleToFill"></image>
 		</view>
 
-		<!-- 秒杀楼层 -->
 		<view class="seckill-section m-t">
 			<view class="s-header">
 				<image class="s-img" src="/static/temp/secskill-img.jpg" mode="widthFix"></image>
@@ -74,7 +65,6 @@
 			</scroll-view>
 		</view>
 
-		<!-- 团购楼层 -->
 		<view class="f-header m-t">
 			<image src="/static/temp/h1.png"></image>
 			<view class="tit-box">
@@ -127,7 +117,6 @@
 
 
 
-		<!-- 分类推荐楼层 -->
 		<view class="f-header m-t">
 			<image src="/static/temp/h1.png"></image>
 			<view class="tit-box">
@@ -194,7 +183,6 @@
 			</scroll-view>
 		</view>
 
-		<!-- 猜你喜欢 -->
 		<view class="f-header m-t">
 			<image src="/static/temp/h1.png"></image>
 			<view class="tit-box">
@@ -262,7 +250,6 @@
 				})
 			},
 		},
-		// #ifndef MP
 		// 标题栏input搜索框点击
 		onNavigationBarSearchInputClicked: async function(e) {
 			this.$api.msg('点击了搜索框');
@@ -273,25 +260,21 @@
 			if (index === 0) {
 				this.$api.msg('点击了扫描');
 			} else if (index === 1) {
-				// #ifdef APP-PLUS
 				const pages = getCurrentPages();
 				const page = pages[pages.length - 1];
 				const currentWebview = page.$getAppWebview();
 				currentWebview.hideTitleNViewButtonRedDot({
 					index
 				});
-				// #endif
 				uni.navigateTo({
 					url: '/pages/notice/notice'
 				})
 			}
 		}
-		// #endif
 	}
 </script>
 
 <style lang="scss">
-	/* #ifdef MP */
 	.mp-search-box {
 		position: absolute;
 		left: 0;
@@ -341,7 +324,6 @@
 		}
 	}
 
-	/* #endif */
 
 
 	page {

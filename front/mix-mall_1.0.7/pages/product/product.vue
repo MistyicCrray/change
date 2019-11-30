@@ -22,7 +22,6 @@
 			</view>
 		</view>
 
-		<!-- 评价 -->
 		<view class="eva-section">
 			<view class="e-header">
 				<text class="tit">评价</text>
@@ -50,7 +49,6 @@
 			<rich-text :nodes="desc"></rich-text>
 		</view>
 
-		<!-- 底部操作菜单 -->
 		<view class="page-bottom">
 			<navigator url="/pages/index/index" open-type="switchTab" class="p-b-btn">
 				<text class="yticon icon-xiatubiao--copy"></text>
@@ -71,7 +69,6 @@
 			</view>
 		</view>
 
-		<!-- 分享 -->
 		<share ref="share" :contentHeight="580" :shareList="shareList"></share>
 	</view>
 </template>
@@ -115,7 +112,6 @@
 					_this.imgList.push(res.data.data.img);
 					_this.product = res.data.data;
 					_this.desc = res.data.data.detail
-					console.info(_this.imgList);
 				},
 				fail: function(err) {
 					console.info(err)

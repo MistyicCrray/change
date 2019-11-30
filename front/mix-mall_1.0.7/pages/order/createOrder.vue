@@ -1,25 +1,9 @@
 <template>
 	<view>
-		<!-- 地址 -->
-		<!-- <navigator url="/pages/address/address?source=1" class="address-section">
-			<view class="order-content">
-				<text class="yticon icon-shouhuodizhi"></text>
-				<view class="cen">
-					<view class="top">
-						<text class="name">{{addressData.name}}</text>
-						<text class="mobile">{{addressData.mobile}}</text>
-					</view>
-					<text class="address">{{addressData.address}} {{addressData.area}}</text>
-				</view>
-				<text class="yticon icon-you"></text>
-			</view>
-		</navigator> -->
-
 		<view class="goods-section">
 			<view class="g-header b-b">
 				<text class="name">{{product.user.userName}}</text>
 			</view>
-			<!-- 商品列表 -->
 			<view class="g-item">
 				<image :src="image + product.img"></image>
 				<view class="right">
@@ -32,8 +16,7 @@
 			</view>
 		</view>
 
-		<!-- 优惠明细 -->
-		<view class="yt-list">
+		<view class="yt-list" v-if="type==1">
 			<view class="yt-list-cell b-b" @click="toggleMask('show')">
 				<text class="cell-tit clamp">交换物品</text>
 				<text class="cell-tip active" v-if="changePro == ''">
@@ -45,7 +28,6 @@
 				<text class="cell-more wanjia wanjia-gengduo-d"></text>
 			</view>
 		</view>
-		<!-- 金额明细 -->
 		<view class="yt-list">
 			<view class="yt-list-cell b-b">
 				<text class="cell-tit clamp">商品金额</text>
@@ -61,15 +43,14 @@
 			</view>
 		</view>
 
-		<!-- 底部 -->
 		<view class="footer">
 			<view class="price-content">
 				<text>实付款</text>
 				<text class="price-tip">￥</text>
 				<text class="price">0</text>
 			</view>
-			<text class="submit" @click="submit" v-if="type==0">提交订单</text>
-			<text class="submit" @click="submit" v-if="type==1">提交交换申请</text>
+			<text class="submit" @click="submit(0)" v-if="type==0">提交订单</text>
+			<text class="submit" @click="submit(1)" v-if="type==1">提交交换申请</text>
 		</view>
 
 		<view class="mask" :class="maskState===0 ? 'none' : maskState===1 ? 'show' : ''" @click="toggleMask">
@@ -109,6 +90,7 @@
 				couponList: [],
 				token: '',
 				changePro: "",
+				paramData: {},
 				addressData: {
 					name: '许小星',
 					mobile: '13853989563',
@@ -173,12 +155,68 @@
 			},
 			submit() {
 				let _this = this;
-				if (_this.changePro == '') {
-					_this.$api.msg(`请选择要交换的物品`);
+				if (_this.type == 1) {
+					if (_this.changePro == '') {
+						_this.$api.msg(`请选择要交换的物品`);
+					}
+					_this.paramData.curProId = _this.productId;
+					_this.paramData.changeProId = _this.changePro.id;
+					uni.request({
+						url: helps.getUrl() + 'product/changePro',
+						method: "POST",
+						header: {
+							accessToken: _this.token
+						},
+						data: _this.paramData,
+						success(res) {
+							if (res.data.code == 200) {
+								_this.$api.msg("交换申请成功");
+							} else {
+								_this.$api.msg(res.data.message);
+							}
+						},
+						fail(err) {
+							console.info(err)
+						}
+					});
+				} else {
+					let products = _this.product;
+					// uni.request({
+					// 	url: helps.getUrl() + 'product/buy',
+					// 	method: "POST",
+					// 	header: {
+					// 		accessToken: _this.token
+					// 	},
+					// 	data: JSON.parse(JSON.stringify(_this.product)),
+					// 	success(res) {
+					// 		console.info(res);
+					// 	},
+					// 	fail(err) {
+					// 		console.info(err);
+					// 	}
+					// });0
+					let obj = {
+						appid: '2019112169318536',
+						noncestr: '222',
+						package: 'Sign=WXPay', // 固定值，以微信支付文档为主  
+						partnerid: '商户号',
+						prepayid: '预支付交易会话',
+						timestamp: '时间戳',
+						sign: '签名' // 根据签名算法生成签名  
+					}
+					// 第二种写法，传对象字符串  
+					let orderInfo = JSON.stringify(obj);
+					uni.requestPayment({
+						provider: 'wxpay',
+						orderInfo: orderInfo, //微信、支付宝订单数据  
+						success: function(res) {
+							console.log('success:' + JSON.stringify(res));
+						},
+						fail: function(err) {
+							console.log('fail:' + JSON.stringify(err));
+						}
+					});
 				}
-				// uni.redirectTo({
-				// 	url: '/pages/money/pay'
-				// })
 			},
 			stopPrevent() {}
 		}

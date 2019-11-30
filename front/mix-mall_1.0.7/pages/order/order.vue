@@ -18,10 +18,8 @@
 					scroll-y
 					@scrolltolower="loadData"
 				>
-					<!-- 空白页 -->
 					<empty v-if="tabItem.loaded === true && tabItem.orderList.length === 0"></empty>
 					
-					<!-- 订单列表 -->
 					<view 
 						v-for="(item,index) in tabItem.orderList" :key="index"
 						class="order-item"
@@ -129,15 +127,10 @@
 			 * 替换onLoad下代码即可
 			 */
 			this.tabCurrentIndex = +options.state;
-			// #ifndef MP
 			this.loadData()
-			// #endif
-			// #ifdef MP
 			if(options.state == 0){
 				this.loadData()
 			}
-			// #endif
-			
 		},
 		 
 		methods: {

@@ -95,7 +95,6 @@ public class ProductController {
 		Page<Product> page = PageHelper.startPage(pageNum == null ? 1 : pageNum, size == null ? 5 : size,
 				orderBy + " desc");
 		List<Product> list = productService.findList(map);
-		System.out.println(new TableData<Product>(page.getTotal(), list).getTotal());
 		return ResultGenerator.genSuccessResult(new TableData<Product>(page.getTotal(), list));
 	}
 
@@ -170,9 +169,8 @@ public class ProductController {
 	 * @return
 	 */
 	@LoginRequired
-	@RequestMapping(value = "/buy/{addrid}", method = RequestMethod.POST)
-	public Result buyProduct(@CurrentUser User user, @RequestBody(required = false) List<Map<String, Object>> map,
-			@PathVariable(value = "addrid") String addrid) {
+	@RequestMapping(value = "/buy", method = RequestMethod.POST)
+	public Result buyProduct(@CurrentUser User user, @RequestBody(required = false) List<Map<String, Object>> map) {
 		OrderItem orderItem = new OrderItem();
 		Double total = new Double(0);
 		Order order = new Order();
@@ -190,7 +188,7 @@ public class ProductController {
 			if (i == 0) {
 				map1.put("status", "2"); // 售罄
 			}
-			map1.put("proid", productMap.get("proid"));
+			map1.put("id", productMap.get("proid"));
 			map1.put("quality", i);
 			if (productMap.get("isnotauction").toString().equals("1")) {
 				map1.put("auctionStatus", "2");
@@ -214,12 +212,10 @@ public class ProductController {
 			orderItem.setQuantity(quantity); // 数量
 			orderItem.setPayment(quantity * product.getPrice()); // 小计
 			orderItem.setProductid(product.getId()); // 商品id
-			orderItem.setAddressId(addrid); // 地址id
 			orderItemService.add(orderItem); // 添加
 			total += orderItem.getPayment(); // 计算总价
 		}
 		// 同时生成订单
-		order.setAddrId(addrid);
 		order.setPayment(total); // 总价
 		order.setUserId(user.getId());
 		order.setStatus("0");
@@ -280,16 +276,20 @@ public class ProductController {
 	}
 	
 	/**
-	 * 删除图片信息
+	 * 物品交换申请
 	 * 
 	 * @param id
 	 * @return
 	 */
 	@LoginRequired
-	@RequestMapping(value = "changePro", method = RequestMethod.PUT)
+	@RequestMapping(value = "/changePro", method = RequestMethod.POST)
 	public Result changePro(@RequestBody Map<String, Object> map, @CurrentUser User user) {
 		map.put("changeUserId", user.getId());
+		Product curProduct = productService.findById(map.get("curProId").toString());
+		if (!curProduct.getStatus().equals("0")) {
+			return ResultGenerator.genFailResult("该物品正在交易中");
+		}
 		productService.changeProduct(map);
-		return ResultGenerator.genSuccessResult();
+		return ResultGenerator.genSuccessResult("申请成功");
 	}
 }

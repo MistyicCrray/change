@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "emotion": "/components/yszyun-imchat-emoji/Emotion/index"
+  },
+  "component": true
+}

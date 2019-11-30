@@ -37,9 +37,9 @@ public interface OrderItemMapper {
      * @mbg.generated Mon Mar 18 22:07:52 CST 2019
      */
     @Insert({
-        "insert into t_order_item (order_item_id, userid, ",
-        "sellid, create_time, ",
-        "status, productid, ",
+        "insert into t_order_item (order_item_id, user_id, ",
+        "sell_id, create_time, ",
+        "status, product_id, ",
         "quantity, payment, ",
         "update_time, confirm_time, ",
         "price, order_id, address_id)",
@@ -60,18 +60,18 @@ public interface OrderItemMapper {
      */
     @Select({
         "select",
-        "order_item_id, userid, sellid, create_time, status, productid, quantity, payment, ",
+        "order_item_id, user_id, sellid, create_time, status, product_id, quantity, payment, ",
         "update_time, confirm_time, price, order_id, address_id",
         "from t_order_item",
         "where order_item_id = #{orderItemId,jdbcType=VARCHAR}"
     })
     @Results({
         @Result(column="order_item_id", property="orderItemId", jdbcType=JdbcType.VARCHAR, id=true),
-        @Result(column="userid", property="userid", jdbcType=JdbcType.VARCHAR),
-        @Result(column="sellid", property="sellid", jdbcType=JdbcType.VARCHAR),
+        @Result(column="user_id", property="userid", jdbcType=JdbcType.VARCHAR),
+        @Result(column="sell_id", property="sellid", jdbcType=JdbcType.VARCHAR),
         @Result(column="create_time", property="createTime", jdbcType=JdbcType.TIMESTAMP),
         @Result(column="status", property="status", jdbcType=JdbcType.VARCHAR),
-        @Result(column="productid", property="productid", jdbcType=JdbcType.VARCHAR),
+        @Result(column="product_id", property="productid", jdbcType=JdbcType.VARCHAR),
         @Result(column="quantity", property="quantity", jdbcType=JdbcType.INTEGER),
         @Result(column="payment", property="payment", jdbcType=JdbcType.DOUBLE),
         @Result(column="update_time", property="updateTime", jdbcType=JdbcType.TIMESTAMP),
@@ -90,17 +90,17 @@ public interface OrderItemMapper {
      */
     @Select({
         "select",
-        "order_item_id, userid, sellid, create_time, status, productid, quantity, payment, ",
+        "order_item_id, user_id, sell_id, create_time, status, product_id, quantity, payment, ",
         "update_time, confirm_time, price, order_id, address_id",
         "from t_order_item"
     })
     @Results({
         @Result(column="order_item_id", property="orderItemId", jdbcType=JdbcType.VARCHAR, id=true),
-        @Result(column="userid", property="userid", jdbcType=JdbcType.VARCHAR),
-        @Result(column="sellid", property="sellid", jdbcType=JdbcType.VARCHAR),
+        @Result(column="user_id", property="userid", jdbcType=JdbcType.VARCHAR),
+        @Result(column="sell_id", property="sellid", jdbcType=JdbcType.VARCHAR),
         @Result(column="create_time", property="createTime", jdbcType=JdbcType.TIMESTAMP),
         @Result(column="status", property="status", jdbcType=JdbcType.VARCHAR),
-        @Result(column="productid", property="productid", jdbcType=JdbcType.VARCHAR),
+        @Result(column="product_id", property="productid", jdbcType=JdbcType.VARCHAR),
         @Result(column="quantity", property="quantity", jdbcType=JdbcType.INTEGER),
         @Result(column="payment", property="payment", jdbcType=JdbcType.DOUBLE),
         @Result(column="update_time", property="updateTime", jdbcType=JdbcType.TIMESTAMP),
@@ -119,11 +119,11 @@ public interface OrderItemMapper {
      */
     @Update({
         "update t_order_item",
-        "set userid = #{userid,jdbcType=VARCHAR},",
-          "sellid = #{sellid,jdbcType=VARCHAR},",
+        "set user_id = #{userid,jdbcType=VARCHAR},",
+          "sell_id = #{sellid,jdbcType=VARCHAR},",
           "create_time = #{createTime,jdbcType=TIMESTAMP},",
           "status = #{status,jdbcType=VARCHAR},",
-          "productid = #{productid,jdbcType=VARCHAR},",
+          "product_id = #{productid,jdbcType=VARCHAR},",
           "quantity = #{quantity,jdbcType=INTEGER},",
           "payment = #{payment,jdbcType=DOUBLE},",
           "update_time = #{updateTime,jdbcType=TIMESTAMP},",
@@ -138,11 +138,11 @@ public interface OrderItemMapper {
     @SelectProvider(type = com.barter.model.dyna.OrderItemDynaProvider.class, method = "selectProvider")
 	@Results({
         @Result(column="order_item_id", property="orderItemId", jdbcType=JdbcType.VARCHAR, id=true),
-        @Result(column="userid", property="userid", jdbcType=JdbcType.VARCHAR),
-        @Result(column="sellid", property="sellid", jdbcType=JdbcType.VARCHAR),
+        @Result(column="user_id", property="userid", jdbcType=JdbcType.VARCHAR),
+        @Result(column="sell_id", property="sellid", jdbcType=JdbcType.VARCHAR),
         @Result(column="create_time", property="createTime", jdbcType=JdbcType.TIMESTAMP),
         @Result(column="status", property="status", jdbcType=JdbcType.VARCHAR),
-        @Result(column="productid", property="productid", jdbcType=JdbcType.VARCHAR),
+        @Result(column="product_id", property="productid", jdbcType=JdbcType.VARCHAR),
         @Result(column="quantity", property="quantity", jdbcType=JdbcType.INTEGER),
         @Result(column="payment", property="payment", jdbcType=JdbcType.DOUBLE),
         @Result(column="update_time", property="updateTime", jdbcType=JdbcType.TIMESTAMP),
@@ -172,8 +172,8 @@ public interface OrderItemMapper {
 		@Result(column = "proid", property = "proid", jdbcType = JdbcType.VARCHAR),
 		@Result(column = "img", property = "img", jdbcType = JdbcType.VARCHAR),
 		@Result(column = "addrid", property = "addrid", jdbcType = JdbcType.VARCHAR, id = true),
-		@Result(column = "userid", property = "userid", jdbcType = JdbcType.VARCHAR),
-		@Result(column = "sellid", property = "sellid", jdbcType = JdbcType.VARCHAR),
+		@Result(column = "user_id", property = "userid", jdbcType = JdbcType.VARCHAR),
+		@Result(column = "sell_id", property = "sellid", jdbcType = JdbcType.VARCHAR),
 		@Result(column = "province", property = "province", jdbcType = JdbcType.VARCHAR),
 		@Result(column = "city", property = "city", jdbcType = JdbcType.VARCHAR),
 		@Result(column = "region", property = "region", jdbcType = JdbcType.VARCHAR),
@@ -211,8 +211,8 @@ public interface OrderItemMapper {
  		@Result(column = "proid", property = "proid", jdbcType = JdbcType.VARCHAR),
  		@Result(column = "img", property = "img", jdbcType = JdbcType.VARCHAR),
  		@Result(column = "addrid", property = "addrid", jdbcType = JdbcType.VARCHAR, id = true),
- 		@Result(column = "userid", property = "userid", jdbcType = JdbcType.VARCHAR),
- 		@Result(column = "sellid", property = "sellid", jdbcType = JdbcType.VARCHAR),
+ 		@Result(column = "user_id", property = "userid", jdbcType = JdbcType.VARCHAR),
+ 		@Result(column = "sell_id", property = "sellid", jdbcType = JdbcType.VARCHAR),
  		@Result(column = "province", property = "province", jdbcType = JdbcType.VARCHAR),
  		@Result(column = "city", property = "city", jdbcType = JdbcType.VARCHAR),
  		@Result(column = "region", property = "region", jdbcType = JdbcType.VARCHAR),

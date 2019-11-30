@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "聊天",
+  "usingComponents": {
+    "chat-input": "/components/yszyun-imchat-emoji/chatinput",
+    "message-show": "/components/yszyun-imchat-emoji/messageshow"
+  }
+}

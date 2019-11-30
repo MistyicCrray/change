@@ -2,7 +2,6 @@
 	<view class="emotion-box" :style="{height: height + 'px'}">
 		<view class="emotion-box-line" v-for="(line, i) in list" :key="i">
 			<view class="emotion-item" v-for="(item, index) in line" :key="index" @click="clickHandler(item)">
-				<!-- <text>{{this.item}}</text> -->
 				<rich-text :nodes="item.replace(/\S{1,3}/gi, emotion(item))"></rich-text>
 			</view>
 		</view>

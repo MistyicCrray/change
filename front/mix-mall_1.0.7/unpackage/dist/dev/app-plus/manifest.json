@@ -18,6 +18,10 @@
     "url": ""
   },
   "permissions": {
+    "Push": {},
+    "Maps": {
+      "coordType": "gcj02"
+    },
     "Payment": {},
     "UniNView": {
       "description": "UniNView原生渲染"
@@ -65,7 +69,9 @@
           "<uses-permission android:name=\"android.permission.READ_CONTACTS\"/>",
           "<uses-permission android:name=\"android.permission.READ_LOGS\"/>",
           "<uses-permission android:name=\"android.permission.READ_PHONE_STATE\"/>",
+          "<uses-permission android:name=\"android.permission.RECEIVE_BOOT_COMPLETED\"/>",
           "<uses-permission android:name=\"android.permission.RECORD_AUDIO\"/>",
+          "<uses-permission android:name=\"android.permission.SYSTEM_ALERT_WINDOW\"/>",
           "<uses-permission android:name=\"android.permission.VIBRATE\"/>",
           "<uses-permission android:name=\"android.permission.WAKE_LOCK\"/>",
           "<uses-permission android:name=\"android.permission.WRITE_CONTACTS\"/>",
@@ -76,8 +82,14 @@
       "apple": {},
       "plugins": {
         "payment": {
-          "alipay": {},
-          "appleiap": {}
+          "alipay": {}
+        },
+        "push": {
+          "igexin": {
+            "appid": "ITFN1pJ5bZ7uwHslhoPfH3",
+            "appkey": "GYFH02fx5D7pXEBY5dgiM",
+            "appsecret": "2D3tHiRRZEAgc3y8412Eb9"
+          }
         },
         "audio": {
           "mp3": {

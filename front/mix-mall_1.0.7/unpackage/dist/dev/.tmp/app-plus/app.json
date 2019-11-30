@@ -17,7 +17,10 @@
     "pages/money/paySuccess",
     "pages/notice/notice",
     "pages/category/category",
-    "pages/product/list"
+    "pages/product/list",
+    "pages/public/register/register",
+    "pages/my_product/my_product",
+    "pages/my_product/add_product/add_product"
   ],
   "window": {
     "navigationBarTextStyle": "black",

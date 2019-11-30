@@ -1,5 +1,4 @@
 <template>
-	<!-- loading 加载 -->
 	<view class="mix-loading-content">
 		<view class="mix-loading-wrapper">
 			<image 

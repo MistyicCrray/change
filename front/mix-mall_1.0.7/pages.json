@@ -4,10 +4,8 @@
 		{
 			"path": "pages/index/index",
 			"style": {
-				// #ifdef MP 
 				"navigationBarTitleText": "Dloud商城",
 				//"navigationStyle": "custom",
-				// #endif 
 				"app-plus": {
 					"titleNView": {
 						"type": "transparent",
@@ -79,9 +77,7 @@
 			"path": "pages/user/user",
 			"style": {
 				"navigationBarTitleText": "我的",
-				// #ifdef MP
 				"navigationStyle": "custom",
-				// #endif
 				"app-plus": {
 					"bounce": "none",
 					"titleNView": {
@@ -125,44 +121,12 @@
 				}
 			}
 		}, {
-			"path": "pages/my_product/my_pro",
-			"style": {
-				"navigationBarTitleText": "我的",
-				// #ifdef MP
-				"navigationStyle": "custom",
-				// #endif
-				"app-plus": {
-					"bounce": "none",
-					"titleNView": {
-						"type": "transparent",
-						"buttons": [{
-							"fontSrc": "/static/yticon.ttf",
-							"text": "\ue61c",
-							"fontSize": "24",
-							"color": "#303133",
-							"width": "46px",
-							"background": "rgba(0,0,0,0)"
-						}]
-					}
-				}
-			}
-		}, {
-			"path": "pages/contract/contract",
-			"style": {
-				"navigationBarTitleText": "聊天"
-			}
-		}, {
-			"path": "pages/my_product/add_pro/addPro",
-			"style": {
-				"navigationBarTitleText": "上架商品"
-			}
-		}, {
 			"path": "pages/money/money",
 			"style": {}
 		}, {
 			"path": "pages/order/createOrder",
 			"style": {
-				"navigationBarTitleText": "创建订单"
+				"navigationBarTitleText": "申请物品交换"
 			}
 		}, {
 			"path": "pages/address/address",
@@ -205,46 +169,35 @@
 				"navigationBarTitleText": "商品列表"
 			}
 		}, {
-			"path": "pages/HM-chat/HM-chat",
-			"style": {
-				"navigationBarTitleText": "HM-chat聊天室",
-				"navigationBarBackgroundColor": "#f2f2f2",
-				"backgroundColorTop": "#e5e5e5",
-				"backgroundColorBottom": "#e5e5e5",
-				"app-plus": {
-					"softinputNavBar": "none",
-					"bounce": "none"
-				}
-			}
-		}, {
-			"path": "pages/HM-chat/HM-details/HM-details",
-			"style": {
-				"navigationBarBackgroundColor": "#cf3c35",
-				"navigationBarTextStyle": "white",
-				"navigationBarTitleText": "红包",
-				"backgroundColorTop": "#cf3c35",
-				"backgroundColorBottom": "#fff"
-			}
-		}, {
-			"path": "pages/HM-chat/HM-hand/HM-hand",
-			"style": {
-				"navigationBarBackgroundColor": "#cf3c35",
-				"navigationBarTextStyle": "white",
-				"navigationBarTitleText": "发红包",
-				"backgroundColorTop": "#cf3c35",
-				"backgroundColorBottom": "#fff",
-				"app-plus": {
-					"softinputNavBar": "none",
-					"bounce": "none"
-				}
-			}
-		}, {
 			"path": "pages/public/register/register",
 			"style": {
 				"navigationBarTitleText": "用户注册",
 				"app-plus": {
 					"bounce": "none"
 				}
+			}
+		}, {
+			"path": "pages/my_product/my_product",
+			"style": {
+				"navigationBarTitleText": "我的",
+				"app-plus": {
+					"titleNView": {
+						"type": "transparent",
+						"buttons": [{
+							"fontSrc": "/static/yticon.ttf",
+							"text": "\ue61c",
+							"fontSize": "24",
+							"color": "#303133",
+							"width": "46px",
+							"background": "rgba(0,0,0,0)"
+						}]
+					}
+				}
+			}
+		}, {
+			"path": "pages/my_product/add_product/add_product",
+			"style": {
+				"navigationBarTitleText": "上架商品"
 			}
 		}
 	],

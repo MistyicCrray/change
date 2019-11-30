@@ -18,7 +18,6 @@
 			}]"
 		 @touchstart="coverTouchstart" @touchmove="coverTouchmove" @touchend="coverTouchend">
 			<image class="arc" src="/static/arc.png"></image>
-			<!-- 订单 -->
 			<view class="order-section">
 				<view class="order-item" @click="navTo('/pages/order/order?state=0')" hover-class="common-hover" :hover-stay-time="50">
 					<text class="yticon icon-shouye"></text>
@@ -38,7 +37,7 @@
 				</view>
 			</view>
 			<view class="history-section icon">
-				<list-cell icon="icon-lishijilu" iconColor="#5fcda2" title="我发布的" @eventClick="navTo('/pages/my_product/my_pro')"></list-cell>
+				<list-cell icon="icon-lishijilu" iconColor="#5fcda2" title="我发布的" @eventClick="navTo('/pages/my_product/my_product')"></list-cell>
 				<list-cell icon="icon-iconfontweixin" iconColor="#e07472" title="我的钱包" tips="您的会员还有3天过期"></list-cell>
 				<list-cell icon="icon-dizhi" iconColor="#5fcda2" title="地址管理" @eventClick="navTo('/pages/address/address')"></list-cell>
 				<list-cell icon="icon-share" iconColor="#9789f7" title="分享" tips="邀请好友赢10万大礼"></list-cell>
@@ -75,26 +74,22 @@
 		},
 		onLoad() {
 		},
-		// #ifndef MP
 		onNavigationBarButtonTap(e) {
 			const index = e.index;
 			if (index === 0) {
 				this.navTo('/pages/set/set');
 			} else if (index === 1) {
-				// #ifdef APP-PLUS
 				const pages = getCurrentPages();
 				const page = pages[pages.length - 1];
 				const currentWebview = page.$getAppWebview();
 				currentWebview.hideTitleNViewButtonRedDot({
 					index
 				});
-				// #endif
 				uni.navigateTo({
 					url: '/pages/notice/notice'
 				})
 			}
 		},
-		// #endif
 		computed: {
 			...mapState(['hasLogin', 'userInfo'])
 		},

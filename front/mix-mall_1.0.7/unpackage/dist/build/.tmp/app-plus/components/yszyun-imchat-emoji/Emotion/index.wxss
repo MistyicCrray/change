@@ -1,0 +1,26 @@
+
+.emotion-box.data-v-43ee153b {
+	margin: 0 auto;
+	width: 95%;
+	-webkit-box-sizing: border-box;
+	        box-sizing: border-box;
+	padding: 5px;
+	border: 1px solid #b4b4b4;
+	overflow: hidden;
+	overflow-y: auto;
+}
+.emotion-box-line.data-v-43ee153b {
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+}
+.emotion-item.data-v-43ee153b {
+	-webkit-box-flex: 1;
+	-webkit-flex: 1;
+	    -ms-flex: 1;
+	        flex: 1;
+	text-align: center;
+	cursor: pointer;
+}
+

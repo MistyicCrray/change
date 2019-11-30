@@ -73,9 +73,7 @@
 		},
 
 		onLoad(options) {
-			// #ifdef H5
 			this.headerTop = document.getElementsByTagName('uni-page-head')[0].offsetHeight + 'px';
-			// #endif
 			this.cateId = options.cateId;
 			this.loadCateList(options.fid, options.sid);
 			this.loadData();

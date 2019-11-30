@@ -20,6 +20,7 @@ import com.barter.model.OrderItem;
 import com.barter.model.Product;
 import com.barter.model.User;
 import com.barter.tools.FileUtil;
+import com.barter.tools.ServiceException;
 import com.barter.tools.UUIDUtils;
 
 @Service
@@ -37,6 +38,7 @@ public class ProductService {
 	private OrderMapper orderMapper;
 
 	public Integer add(Product product, MultipartFile file) {
+		product.setStatus("0");
 		product.setId(UUIDUtils.get16UUID());
 		product.setCreateDate(new Date());
 		product.setUpdateDate(new Date());
@@ -127,10 +129,28 @@ public class ProductService {
 		String curProId = map.get("curProId").toString();
 		String changeProId = map.get("changeProId").toString();
 		Product curProduct = productMapper.selectByPrimaryKey(curProId);
+		if (!curProduct.getStatus().equals("0")) {
+			throw new ServiceException("该物品正在交易中");
+		}
+		curProduct.setStatus("1");
+		productMapper.updateByPrimaryKey(curProduct);
 		Order order = new Order();
+		order.setOrderId(UUIDUtils.get16UUID());
+		order.setPayment((double) 0);
+		order.setStatus("0");
+		order.setAddrId(curProId);
+		order.setUserId(map.get("changeUserId").toString());
 		OrderItem orderItem = new OrderItem();
 		orderItem.setOrderItemId(UUIDUtils.get16UUID());
-
+		orderItem.setOrderId(order.getOrderId());
+		orderItem.setProductid(curProId);
+		orderItem.setSellid(curProduct.getUserId());
+		orderItem.setUserid(map.get("changeUserId").toString());
+		orderItem.setCreateTime(new Date());
+		orderItem.setStatus("0");
+		orderItem.setAddressId(changeProId);
+		orderItemMapper.insert(orderItem);
+		orderMapper.insert(order);
 	}
 
 }

@@ -27,7 +27,6 @@
 			<text class="yticon icon-shoucang" :class="{active: data.favorite}" @click="favorite"></text>
 		</view>
 
-		<!-- 猜你喜欢 -->
 		<view class="guess">
 			<view class="section-tit">猜你喜欢</view>
 			<view class="guess-list">
@@ -40,7 +39,6 @@
 				</view>
 			</view>
 		</view>
-		<!-- 评论 -->
 		<view class="evalution">
 			<view class="section-tit">评论</view>
 			<view class="eva-list" :class="{Skeleton:!loaded}">
@@ -58,7 +56,6 @@
 				</view>
 			</view>
 		</view>
-		<!-- 分享 -->
 		<share ref="share" :contentHeight="580" :shareList="shareList"></share>
 	</view>
 </template>

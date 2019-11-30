@@ -1,6 +1,5 @@
 <template>
 	<view class="container">
-		<!-- 空白页 -->
 		<view v-if="!hasLogin || empty===true" class="empty">
 			<image src="/static/emptyCart.jpg" mode="aspectFit"></image>
 			<view v-if="hasLogin" class="empty-tips">
@@ -13,7 +12,6 @@
 			</view>
 		</view>
 		<view v-else>
-			<!-- 列表 -->
 			<view class="cart-list">
 				<block v-for="(item, index) in cartList" :key="item.id">
 					<view
@@ -53,7 +51,6 @@
 					</view>
 				</block>
 			</view>
-			<!-- 底部菜单栏 -->
 			<view class="action-section">
 				<view class="checkbox">
 					<image 
@@ -309,9 +306,7 @@
 	}
 	/* 底部栏 */
 	.action-section{
-		/* #ifdef H5 */
 		margin-bottom:100upx;
-		/* #endif */
 		position:fixed;
 		left: 30upx;
 		bottom:30upx;

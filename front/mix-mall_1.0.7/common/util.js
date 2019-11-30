@@ -1,4 +1,5 @@
 const getUrl = function() {
+	// return 'http://bhh89k.natappfree.cc/';
 	return 'http://localhost/barter/';
 }
 const imgUrl = function() {
@@ -17,13 +18,13 @@ const now = Date.now || function() {
 const isArray = Array.isArray || function(obj) {
 	return obj instanceof Array;
 };
-const isEmail = function (str){
-    var re=/^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z0-9]+$/;
-  if (re.test(str) != true) {
-    return false;
-  }else{
-    return true;
-  }
+const isEmail = function(str) {
+	var re = /^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z0-9]+$/;
+	if (re.test(str) != true) {
+		return false;
+	} else {
+		return true;
+	}
 }
 
 export default {
